@@ -10,6 +10,11 @@ class Assembler(private val sourceCode:List<String>){
         return intArrayOf(Command.NOP.commandValue)
     }
 
+
+    private fun generateLabel(arg:String):Int{
+        val id = labels[arg] ?: return 0
+        return id
+    }
     private fun spaceDelim(line:String):IntArray{
         val parts = line.split(" ")
         val command = parts[0]
@@ -18,10 +23,10 @@ class Assembler(private val sourceCode:List<String>){
             "pop" -> intArrayOf(Command.POP.commandValue,arg.toInt())
             "pushi" -> intArrayOf(Command.PUSHI.commandValue,arg.toInt())
             "pushr" -> intArrayOf(Command.PUSHR.commandValue,arg.toInt())
-            "call" -> intArrayOf(Command.CALL.commandValue,labels.getOrDefault(arg,0))
-            "jmpe" -> intArrayOf(Command.JMPE.commandValue,labels.getOrDefault(arg,arg.toInt()))
-            "jmpz" -> intArrayOf(Command.JMPZ.commandValue,labels.getOrDefault(arg,arg.toInt()))
-            "jmp" -> intArrayOf(Command.JMP.commandValue,labels.getOrDefault(arg,arg.toInt()))
+            "call" -> intArrayOf(Command.CALL.commandValue,generateLabel(arg))
+            "jmpe" -> intArrayOf(Command.JMPE.commandValue,generateLabel(arg))
+            "jmpz" -> intArrayOf(Command.JMPZ.commandValue,generateLabel(arg))
+            "jmp" -> intArrayOf(Command.JMP.commandValue,generateLabel(arg))
             "label" -> label(arg)
             else -> intArrayOf(Command.NOP.commandValue)
         }

@@ -2,8 +2,12 @@ pushi 60
 pushi 5
 add
 printc
+pushi 65
 label test
 pushi 1
 add
-princ
+pop 1
+pushr 1
+push 1
+printc
 jmp test
