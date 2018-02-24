@@ -1,0 +1,9 @@
+pushi 60
+pushi 5
+add
+printc
+label test
+pushi 1
+add
+princ
+jmp test
