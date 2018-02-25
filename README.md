@@ -15,9 +15,9 @@ where
 
 \#pushi:50 pushes the value 50 onto the stack
 
-#Virtual machine spec
+# Virtual machine spec
 
-##Op codes and assembly
+## Op codes and assembly
 The virtual machine contains 21 opcodes currently. They are
 0. Pop __(0/1)__ ; pops the value off the stack into register 0 or register 1
 1. Pushi: _number_ ; is the number to push onto the stack
@@ -42,7 +42,7 @@ The virtual machine contains 21 opcodes currently. They are
 20. halt ;stops execution but setting the __RUNNING__ flag to false
 
 
-##Registers
+## Registers
 The machine offers 2 general purpose storage registers for accessable with pop and pushr they are named __0__ adn __1__
 As well the machine has the __FLAG__ register which is set based on test to different values
 0. cmp returned false
@@ -52,12 +52,12 @@ As well the machine has the __FLAG__ register which is set based on test to diff
 
 as well as a __RUNNING__ register that simply checks if the machine is running.
 
-##RAM
+## RAM
 The machine currently support 0xFFFF memory values. This is totally arbitrary and will later be changed to Kotlins Int.MAXVALUE
 
 Currently it is 0xFFFF becaus its easier to debug
 
-##Opcode legnths
+## Opcode legnths
 most all opcodes are 1 *byte* long but in this case a *byte* is defined as the length of an int for ease of implimentation
 
 Some opcodes have an argument which takes a second byte. 

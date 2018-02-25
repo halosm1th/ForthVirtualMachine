@@ -15,12 +15,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="472">
-                <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <first_editor relative-caret-position="255">
+                <caret line="17" column="2" lean-forward="false" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -28,7 +28,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForthVirtualMachine.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ForthVirtualMachine.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ForthVirtualMachine.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -70,8 +70,8 @@
         <option value="$PROJECT_DIR$/program.fvmasm" />
         <option value="$PROJECT_DIR$/src/Assembler.kt" />
         <option value="$PROJECT_DIR$/src/SimpleForth.kt" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/ForthVirtualMachine.kt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -593,7 +593,7 @@
       <workItem from="1519510453511" duration="353000" />
       <workItem from="1519511397185" duration="98000" />
       <workItem from="1519511645563" duration="826000" />
-      <workItem from="1519517018975" duration="2879000" />
+      <workItem from="1519517018975" duration="2968000" />
     </task>
     <task id="LOCAL-00001" summary="Started work on simple forth interpreter. As well updated the assembler to go from space delimed to colon because it makes it easier for the interpreter. And lets me remove redudent white space! Should also make it easier to code.">
       <created>1519518777841</created>
@@ -602,11 +602,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519518777841</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated readme to reflect new work">
+      <created>1519519910319</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1519519910319</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4737000" />
+    <option name="totallyTimeSpent" value="4826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1922" height="1056" extended-state="0" />
@@ -682,7 +689,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started work on simple forth interpreter. As well updated the assembler to go from space delimed to colon because it makes it easier for the interpreter. And lets me remove redudent white space! Should also make it easier to code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started work on simple forth interpreter. As well updated the assembler to go from space delimed to colon because it makes it easier for the interpreter. And lets me remove redudent white space! Should also make it easier to code." />
+    <MESSAGE value="Updated readme to reflect new work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated readme to reflect new work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -798,22 +806,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="472">
-            <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ForthVirtualMachine.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="255">
+            <caret line="17" column="2" lean-forward="false" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
