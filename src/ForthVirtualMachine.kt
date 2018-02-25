@@ -25,7 +25,7 @@ enum class Command(val commandValue:Int){
     HALT(20)
 }
 
-class ForthVirtualMachine(var ram:IntArray){
+class ForthVirtualMachine(private var ram:IntArray){
 
     //Variables
     //region variables
@@ -43,7 +43,7 @@ class ForthVirtualMachine(var ram:IntArray){
     //region commands
     //region direct_stack_ops
     //Commands for the vm
-    fun popR(){
+    private fun popR(){
         val reg = getNext()
         when (reg){
             0-> eax = ram[stackPointer]
@@ -51,24 +51,24 @@ class ForthVirtualMachine(var ram:IntArray){
         }
     }
 
-    fun pop():Int{
+    private fun pop():Int{
         val value = ram[stackPointer]
         stackPointer--
         return value
     }
 
     //region push
-    fun push(value:Int) {
+    private fun push(value:Int) {
         stackPointer++
         ram[stackPointer] = value
     }
 
-    fun pushi(){
+    private fun pushi(){
         val value = getNext()
         push(value)
     }
 
-    fun pushr(){
+    private fun pushr(){
         val reg = getNext()
         when(reg){
             0 -> push(eax)
@@ -78,33 +78,33 @@ class ForthVirtualMachine(var ram:IntArray){
     //endregion push
     //endregion direct_stack_ops
     //region math_ops
-    fun mathOp(mathCommand: (num1:Int, num2:Int) -> Int){
+    private fun mathOp(mathCommand: (num1:Int, num2:Int) -> Int){
         val num1 = pop()
         val num2 = pop()
         val result = mathCommand(num1,num2)
         push(result)
     }
 
-    fun add(){
+    private fun add(){
         mathOp({num1,num2 -> num1 + num2})
     }
 
-    fun sub(){
+    private fun sub(){
         mathOp({num1,num2 -> num1 - num2})
     }
 
-    fun mul(){
+    private fun mul(){
         mathOp({num1,num2 -> num1 * num2})
     }
-    fun div(){
+    private fun div(){
         mathOp({num1,num2 -> num1 / num2})
     }
-    fun mod(){
+    private fun mod(){
         mathOp({num1,num2 -> num1 % num2})
     }
     //endregion math_ops
     //region IO
-    fun getC(){
+    private fun getC(){
         val input = readLine()
         if(input != null){
             push(input[0].toInt())
@@ -113,7 +113,7 @@ class ForthVirtualMachine(var ram:IntArray){
         }
     }
 
-    fun getI(){
+    private fun getI(){
         val input = readLine()
         if(input != null){
             push(input.toInt())
@@ -122,69 +122,69 @@ class ForthVirtualMachine(var ram:IntArray){
         }
     }
 
-
-    fun printC(){
+    private fun printC(){
         val value = pop()
         print(value.toChar())
     }
 
-    fun printI() {
+    private fun printI() {
         val value = pop()
         print(value)
     }
     //endregion IO
     //region Comparison
-    fun test(){
+    private fun test(){
         val num1 = pop()
-        if (num1 == 0){
-            flag = 2
+        flag = if (num1 == 0){
+            2
         }else{
-            flag = 3
+            3
         }
         push(num1)
     }
 
-    fun cmp(){
+    private fun cmp(){
         val num1 = pop()
         val num2 = pop()
         push(num2)
         push(num1)
-        if(num1 == num2){
-            flag =1
+        flag = if(num1 == num2){
+            1
         }else{
-            flag = 0
+            0
         }
     }
     //endregion Comparison
     //region ipChange
     //region jump
-    fun jmp(){
+    private fun jmp(){
         val newIP = getNext()
-        instructionPointer = newIP;
+        instructionPointer = newIP
     }
 
-    fun jmpe(){
+    private fun jmpe(){
         val ip = getNext()
         if(flag == 1){
             instructionPointer = ip
         }
     }
 
-    fun jmpz(){
+    private fun jmpz(){
         val ip = getNext()
         if(flag == 3){
             instructionPointer = ip
         }
     }
+
     //endregion jump
     //region CallRet
-    fun call(){
+    private fun call(){
         val currentIp = instructionPointer + 1
         functionCallList.add(currentIp)
         instructionPointer = getNext()
     }
 
-    fun ret(){
+    private fun ret(){
         val retValue = functionCallList.last()
         functionCallList.removeAt(functionCallList.size-1)
         instructionPointer = retValue
@@ -193,23 +193,22 @@ class ForthVirtualMachine(var ram:IntArray){
 
     //endregion ipChange
     //region otherOps
-    fun nop(){
+    private fun nop(){
 
     }
 
-    fun halt(){
+    private fun halt(){
         running = false
     }
     //endregion otherOps
     //endregion commands
 
-    fun error() {
-        println("Error with evaluation!")
+    private fun error(location:Int) {
+        println("Error with evaluation, at $location with opcode ${Command.values()[ram[instructionPointer]]}")
     }
 
     //Execution code for the vm
-
-    fun executeCommand(command:Command){
+    private fun executeCommand(command:Command){
         when (command){
             Command.POP -> popR()
             Command.PUSHI -> pushi()
@@ -232,16 +231,16 @@ class ForthVirtualMachine(var ram:IntArray){
             Command.JMPZ -> jmpz()
             Command.CALL -> call()
             Command.RET -> ret()
-            else -> error()
+            else -> error(instructionPointer)
         }
     }
 
-    fun getNext():Int{
+    private fun getNext():Int{
         instructionPointer++
         return ram[instructionPointer]
     }
 
-    fun Execute(){
+    fun execute(){
         while(running) {
             val command = getNext()
             executeCommand(Command.values()[command])

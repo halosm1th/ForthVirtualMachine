@@ -1,13 +1,13 @@
-pushi 60
-pushi 5
+pushi:60
+pushi:5
 add
 printc
-pushi 65
-label test
-pushi 1
+pushi:65
+label:test
+pushi:1
 add
-pop 1
-pushr 1
-push 1
+pop:1
+pushr:1
+pushr:1
 printc
 jmp test

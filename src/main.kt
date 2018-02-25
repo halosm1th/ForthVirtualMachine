@@ -12,6 +12,6 @@ fun main(args: Array<String>) {
         assembler.assemble()
         val program = assembler.opCodes
         val fvm = ForthVirtualMachine(program)
-        fvm.Execute()
+        fvm.execute()
         println("\nDone")
 }

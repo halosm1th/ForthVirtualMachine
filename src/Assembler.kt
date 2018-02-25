@@ -16,7 +16,7 @@ class Assembler(private val sourceCode:List<String>){
         return id
     }
     private fun spaceDelim(line:String):IntArray{
-        val parts = line.split(" ")
+        val parts = line.split(":")
         val command = parts[0]
         val arg = parts[1]
         return when(command.toLowerCase()){
@@ -28,6 +28,7 @@ class Assembler(private val sourceCode:List<String>){
             "jmpz" -> intArrayOf(Command.JMPZ.commandValue,generateLabel(arg))
             "jmp" -> intArrayOf(Command.JMP.commandValue,generateLabel(arg))
             "label" -> label(arg)
+            "pushc" -> intArrayOf(Command.PUSHI.commandValue,generateLabel(arg))
             else -> intArrayOf(Command.NOP.commandValue)
         }
     }
@@ -54,7 +55,8 @@ class Assembler(private val sourceCode:List<String>){
 
     fun assemble(){
        for(s in sourceCode){
-           if(s.contains(" ")){
+           s.replace(" ","")
+           if(s.contains(":")){
                val values= spaceDelim(s)
                for(value in values){
                    opCodes[iterator] = value
